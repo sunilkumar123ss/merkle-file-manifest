@@ -1,0 +1,8 @@
+{
+  "slug": "merkle-file-manifest",
+  "title": "Merkle file manifest",
+  "description": "Detect directory changes using canonical file leaves and a reproducible Merkle root.",
+  "category": "systems",
+  "demo_args": [],
+  "expected_exit": 0
+}

@@ -59,3 +59,26 @@ def compare(expected, actual):
     old = {r['path']: r for r in expected['entries']}
     new = {r['path']: r for r in actual['entries']}
     return {'matches': expected['root'] == actual['root'], 'added': sorted(set(new) - set(old)), 'removed': sorted(set(old) - set(new)), 'changed': sorted((p for p in old.keys() & new.keys() if old[p] != new[p]))}
+
+def demo():
+    with tempfile.TemporaryDirectory() as folder:
+        base = Path(folder)
+        (base / 'a.txt').write_text('synthetic alpha\n')
+        (base / 'b.txt').write_text('synthetic beta\n')
+        before = build(base)
+        (base / 'b.txt').write_text('synthetic beta revised\n')
+        return {'original_root': before['root'], 'comparison': compare(before, build(base))}
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--directory', type=Path)
+    parser.add_argument('--manifest', type=Path)
+    args = parser.parse_args()
+    try:
+        if args.manifest and (not args.directory):
+            raise ValueError('--manifest requires --directory')
+        output = demo() if not args.directory else build(args.directory)
+        if args.manifest:
+            output = compare(json.loads(args.manifest.read_text()), output)
+        print(json.dumps(output, indent=2))
+    except (ValueError, TypeError, OSError) as error:
+        parser.error(str(error))

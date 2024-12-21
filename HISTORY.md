@@ -4,7 +4,7 @@ This reference implementation and all of the following milestone commits were pr
 
 **Every recorded author and committer date in this timeline is synthetic. These dates are not evidence that the code was written, tested, deployed, or used professionally in the past.**
 
-This snapshot is milestone 5 of 16. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
+This snapshot is milestone 6 of 16. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
 
 The progression decomposes already-completed October 2026 code into meaningful additions. It is not recovered original development history. Publication time is separate from the synthetic Git timestamps.
 
@@ -17,7 +17,7 @@ The progression decomposes already-completed October 2026 code into meaningful a
 | 3 | 2023-11-15T16:32:54+05:30 | encode canonical leaves and calculate a Merkle root (present) |
 | 4 | 2024-10-08T11:19:24+05:30 | build deterministic directory manifests from file contents (present) |
 | 5 | 2024-12-16T18:00:49+05:30 | validate manifests and classify added, removed, and changed files (present) |
-| 6 | 2024-12-21T16:32:45+05:30 | add the deterministic demonstration and command-line entry point (later stage) |
+| 6 | 2024-12-21T16:32:45+05:30 | add the deterministic demonstration and command-line entry point (present) |
 | 7 | 2025-04-05T13:57:19+05:30 | test nested paths follow manifest sort order (later stage) |
 | 8 | 2025-08-04T16:54:57+05:30 | test empty is stable (later stage) |
 | 9 | 2025-10-01T16:11:27+05:30 | test changes are localized (later stage) |

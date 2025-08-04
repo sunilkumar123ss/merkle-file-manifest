@@ -25,6 +25,8 @@ class MerkleTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
+    def test_empty_is_stable(self):
+        self.assertEqual(m.build(self.base), m.build(self.base))
 
 
 

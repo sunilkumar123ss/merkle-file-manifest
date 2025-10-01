@@ -28,6 +28,13 @@ class MerkleTests(unittest.TestCase):
     def test_empty_is_stable(self):
         self.assertEqual(m.build(self.base), m.build(self.base))
 
+    def test_changes_are_localized(self):
+        (self.base / 'a').write_text('one')
+        before = m.build(self.base)
+        (self.base / 'a').write_text('two')
+        result = m.compare(before, m.build(self.base))
+        self.assertFalse(result['matches'])
+        self.assertEqual(result['changed'], ['a'])
 
 
 

@@ -36,6 +36,14 @@ class MerkleTests(unittest.TestCase):
         self.assertFalse(result['matches'])
         self.assertEqual(result['changed'], ['a'])
 
+    def test_added_and_removed(self):
+        (self.base / 'a').write_text('one')
+        before = m.build(self.base)
+        (self.base / 'a').unlink()
+        (self.base / 'b').write_text('two')
+        result = m.compare(before, m.build(self.base))
+        self.assertEqual(result['added'], ['b'])
+        self.assertEqual(result['removed'], ['a'])
 
 
 

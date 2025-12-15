@@ -45,6 +45,15 @@ class MerkleTests(unittest.TestCase):
         self.assertEqual(result['added'], ['b'])
         self.assertEqual(result['removed'], ['a'])
 
+    def test_creation_order_does_not_matter(self):
+        for name in ['c', 'a', 'b']:
+            (self.base / name).write_text(name)
+        first = m.build(self.base)
+        for file in self.base.iterdir():
+            file.unlink()
+        for name in ['a', 'b', 'c']:
+            (self.base / name).write_text(name)
+        self.assertEqual(first, m.build(self.base))
 
 
 if __name__ == '__main__':

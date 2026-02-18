@@ -55,6 +55,11 @@ class MerkleTests(unittest.TestCase):
             (self.base / name).write_text(name)
         self.assertEqual(first, m.build(self.base))
 
+    def test_symlinks_rejected(self):
+        (self.base / 'a').write_text('x')
+        (self.base / 'link').symlink_to(self.base / 'a')
+        with self.assertRaises(ValueError):
+            m.build(self.base)
 
 if __name__ == '__main__':
     unittest.main()

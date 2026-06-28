@@ -61,5 +61,12 @@ class MerkleTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             m.build(self.base)
 
+    def test_manifest_tampering_rejected(self):
+        (self.base / 'a').write_text('x')
+        before = m.build(self.base)
+        after = m.build(self.base)
+        before['entries'][0]['bytes'] = 9
+        with self.assertRaises(ValueError):
+            m.compare(before, after)
 if __name__ == '__main__':
     unittest.main()
